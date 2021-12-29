@@ -1,6 +1,6 @@
 # Tarea Citas Clinica
 ## Profesor: Andrés Rubio del Río
-## Alumno:
+## Alumno: Laura Valverde Osa
 
 Tu tarea va a consistir en gestionar las citas de los pacientes de una clínica. La clínica quiere almacenar la fecha y el día de las citas de los diferentes pacientes. Para los pacientes almacenará su nombre bien formateado, su DNI comprobando que es válido y su teléfono comprobando también que es válido. El programa permitirá insertar nuevas citas, buscar citas por el día, borrar una cita, mostrar todas las citas y mostrar las citas para un día dado.
 
