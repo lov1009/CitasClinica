@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Paciente {
 	// crear atributos
-	private static final String ER_DNI = "^([0-9]{8})([A-Z])$";
+	private static final String ER_DNI = "^([0-9]{8})([A-Za-z])$";
 	private static final String ER_TELEFONO = "^[69][0-9]{8}$";
 	private String nombre, dni, telefono;
 
@@ -42,7 +42,7 @@ public class Paciente {
 		// compruebo que se cumple el patrón y luego separo por grupos.
 		if (m.find()) {
 			int numero = Integer.parseInt(m.group(1));// como quiero obtener un int, hago el cambio del string.
-			String letra = m.group(2);
+			String letra = m.group(2).toUpperCase();
 
 			// Array de char, cada valor de letra (ej: T), ocupa la posición o
 			// índice del número que hay en la tabla de validaciones de letras
@@ -101,7 +101,7 @@ public class Paciente {
 		this.dni = dni;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(String telefono) throws IllegalArgumentException {
 		if (telefono == null || telefono.isEmpty() || telefono.isBlank()) {
 			throw new NullPointerException("ERROR: El teléfono de un paciente no puede ser nulo o vacío.");
 		}
@@ -109,6 +109,7 @@ public class Paciente {
 		// excepcion.
 		Pattern p = Pattern.compile(ER_TELEFONO);
 		Matcher m = p.matcher(telefono);
+		
 		if (m.find()) {
 			this.telefono = telefono;
 
@@ -121,12 +122,12 @@ public class Paciente {
 	// Constructor con parámetros
 	public Paciente(String nombre, String dni, String telefono) {
 		setNombre(nombre);
-		setTelefono(telefono);
 		setDni(dni);
+		setTelefono(telefono);
 	}
 
 	// Constructor copia. Compruebo q no sea nulo (o lanzo excepcion), se crea un
-	// paciente con los datos que recibe.
+	// paciente con los datos.
 	public Paciente(Paciente paciente) {
 		if (paciente == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un paciente nulo.");
@@ -169,7 +170,7 @@ public class Paciente {
 		return iniciales.toString();
 	}
 
-	// metodo toString con lo que se pide en los test.
+	// metodo toString que devuelve la inforamcion como se pide en los test.
 	@Override
 	public String toString() {
 
