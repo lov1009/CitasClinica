@@ -21,6 +21,7 @@ public class Paciente {
 			if (nombreDividido[i].isEmpty()) {
 				continue;
 			}
+
 			// la "letra" en posicion 0 de cada string del array se pone en mayuscula y las
 			// demás en minuscula.
 			// se unen, y se le añade un espacio detrás de cada string del array, excepto
@@ -32,7 +33,6 @@ public class Paciente {
 			}
 		}
 		return nombreFormateado.toString();
-
 	}
 
 	private boolean comprobarLetraDNI(String dni) {
@@ -86,6 +86,16 @@ public class Paciente {
 		if (nombre == null || nombre.isEmpty() || nombre.isBlank()) {
 			throw new NullPointerException("ERROR: El nombre de un paciente no puede ser nulo o vacío.");
 		}
+
+		// toCharArray convierte un String en array d caracteres.
+		// en el for each recorre array y comprueba que cada caracter no
+		// sea un letra o un espacio y si se cumple, lanza excepcion, sino, se asigna.
+		for (char caracter : nombre.toCharArray()) {
+			if (!Character.isAlphabetic(caracter) && caracter != ' ') {
+				throw new IllegalArgumentException("ERROR: El nombre solo puede contener letras.");
+			}
+		}
+
 		this.nombre = formateaNombre(nombre); // llama a ese metodo para asignar el nombre correcto (formateado).
 	}
 
@@ -109,7 +119,7 @@ public class Paciente {
 		// excepcion.
 		Pattern p = Pattern.compile(ER_TELEFONO);
 		Matcher m = p.matcher(telefono);
-		
+
 		if (m.find()) {
 			this.telefono = telefono;
 
