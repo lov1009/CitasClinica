@@ -77,6 +77,7 @@ public class MainApp {
 			System.out.println("No hay citas.");
 			return;
 		}
+		//recorre el array y comprueba cada cita, y si no es nula, la imprime.
 		for (Cita citaActual : citasClinica.getCitas()) {
 			if (citaActual != null) {
 				System.out.println(citaActual);

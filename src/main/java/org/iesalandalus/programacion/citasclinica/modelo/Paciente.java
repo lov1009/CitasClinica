@@ -89,7 +89,7 @@ public class Paciente {
 
 		// toCharArray convierte un String en array d caracteres.
 		// en el for each recorre array y comprueba que cada caracter no
-		// sea un letra o un espacio y si se cumple, lanza excepcion, sino, se asigna.
+		// sea un letra o un espacio y si se cumple, lanza excepcion.
 		for (char caracter : nombre.toCharArray()) {
 			if (!Character.isAlphabetic(caracter) && caracter != ' ') {
 				throw new IllegalArgumentException("ERROR: El nombre solo puede contener letras.");

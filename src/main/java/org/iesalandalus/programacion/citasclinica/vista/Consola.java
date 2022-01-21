@@ -76,6 +76,7 @@ public class Consola {
 	public static LocalDateTime leerFechaHora() {
 		LocalDateTime fechaHoraValida = null;
 		while (fechaHoraValida == null) {
+			
 			System.out.println("Introduzca la fecha y hora, con el formato: dd/MM/yyyy HH:mm ");
 			String fechaHoraIntroducida = Entrada.cadena();
 			try {
@@ -88,7 +89,7 @@ public class Consola {
 		return fechaHoraValida;
 	}
 
-	// metodo que lee un paciente y una fecha-hora y con l constructor Cita crea un
+	// metodo que lee un paciente y una fecha-hora y con el constructor Cita crea un
 	// nuevo objeto cita con los parametros que le pasamos
 	public static Cita leerCita() {
 		Paciente paciente = leerPaciente();
