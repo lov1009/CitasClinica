@@ -32,6 +32,9 @@ public class MainApp {
 				System.out.println(e.getMessage());
 				System.out.println("");
 
+			} catch (NullPointerException e) {
+				System.out.println(e.getMessage());
+				System.out.println("");
 			}
 		} while (insertarCitaCorrecta == false);
 
