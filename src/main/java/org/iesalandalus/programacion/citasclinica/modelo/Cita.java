@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.citasclinica.modelo;
 
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -33,11 +34,17 @@ public class Cita {
 		this.paciente = new Paciente(paciente);
 	}
 
+
+	//comprueba que la fechaHora no sea nula y que no sea anterior a la hora real actual.
 	public void setFechaHora(LocalDateTime fechaHoraLocal) {
 		if (fechaHoraLocal == null) {
 			throw new NullPointerException("ERROR: La fecha y hora de una cita no puede ser nula.");
 		}
+		if(fechaHoraLocal.isBefore(LocalDateTime.now())) {
+			throw new IllegalArgumentException("ERROR: La fecha no puede ser anterior al momento actual.");
+		}
 		fechaHora = fechaHoraLocal;
+
 	}
 
 	// constructor con parámetros
