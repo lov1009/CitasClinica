@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.citasclinica.modelo;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -162,18 +163,26 @@ public class Citas {
 	 * Al final devuelve el array del objeto citasPorFecha
 	 */
 	public Cita[] getCitas(LocalDate fecha) {
-		Citas citasPorFecha = new Citas(capacidad);
+	/*	Citas citasPorFecha = new Citas(capacidad);
+		
 		for (int i = 0; i < tamano; i++) {
 			if (citas[i].getFechaHora().toLocalDate().equals(fecha)) {
 				try {
 					citasPorFecha.insertar(citas[i]);
 				} catch (OperationNotSupportedException e) {
 					System.out.println(e.getMessage());
-
 				}
 			}
 		}
-		return citasPorFecha.citas;
+		return citasPorFecha.citas;*/
+		
+		Cita[] citasPorFecha = Arrays.copyOf(citas, capacidad);
+		for (int i = 0; i < tamano; i++) {
+			if (!citasPorFecha[i].getFechaHora().toLocalDate().equals(fecha)) {
+				citasPorFecha[i] = null;
+			}
+		}
+		return citasPorFecha;
 	}
 
 }
