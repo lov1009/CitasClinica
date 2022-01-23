@@ -83,9 +83,12 @@ public class Paciente {
 	// setters: comprueban que nombre, dni y telefono no sean nulos, vacios ni estén
 	// en blanco. Y lanza excepciones si es necesario.
 	public void setNombre(String nombre) {
-		if (nombre == null || nombre.isEmpty() || nombre.isBlank()) {
+		if (nombre == null || (nombre.isEmpty() || nombre.isBlank())) {
 			throw new NullPointerException("ERROR: El nombre de un paciente no puede ser nulo o vacío.");
 		}
+		/*if (nombre.isEmpty() || nombre.isBlank()) {
+			throw new IllegalArgumentException("ERROR: El nombre de un paciente no puede ser nulo o vacío.");
+		}*/
 
 		// toCharArray convierte un String en array d caracteres.
 		// en el for each recorre array y comprueba que cada caracter no
@@ -103,6 +106,10 @@ public class Paciente {
 		if (dni == null || dni.isEmpty() || dni.isBlank()) {
 			throw new NullPointerException("ERROR: El DNI de un paciente no puede ser nulo o vacío.");
 		}
+	/*	if (dni.isEmpty() || dni.isBlank()) {
+			throw new IllegalArgumentException("ERROR: El DNI de un paciente no puede ser nulo o vacío.");
+		} no me funcionan así los test, con este tipo de excepcion*/
+		
 		// comprueba que la letra del dni sea correcta, o lanza excepción. Llama al
 		// metodo comprobarLetraDni para ello.
 		if (comprobarLetraDNI(dni) == false) {
@@ -115,6 +122,10 @@ public class Paciente {
 		if (telefono == null || telefono.isEmpty() || telefono.isBlank()) {
 			throw new NullPointerException("ERROR: El teléfono de un paciente no puede ser nulo o vacío.");
 		}
+		/*if (telefono.isEmpty() || telefono.isBlank()) {
+			throw new IllegalArgumentException("ERROR: El teléfono de un paciente no puede ser nulo o vacío.");
+		}*/
+		
 		// Compruebo el patron del telefono y si está bien lo asigno, si no, lanzo
 		// excepcion.
 		Pattern p = Pattern.compile(ER_TELEFONO);

@@ -24,6 +24,7 @@ public class MainApp {
 				Cita cita = Consola.leerCita();
 				citasClinica.insertar(cita);
 				insertarCitaCorrecta = true;
+				
 			} catch (OperationNotSupportedException e) {
 				System.out.println(e.getMessage());
 				System.out.println("");
