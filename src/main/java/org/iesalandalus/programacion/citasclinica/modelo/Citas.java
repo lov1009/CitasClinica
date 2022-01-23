@@ -30,7 +30,7 @@ public class Citas {
 		}
 		return false;
 	}
-	
+
 	// metodo capacidadSuperada (si la capacidad es menor que la capacidad que le
 	// pasamos, se supera la capacidad, sería true.
 	private boolean capacidadSuperada(int capacidad) {
@@ -42,27 +42,13 @@ public class Citas {
 	}
 
 	/*
-	 * se recorre el array citas y se compara cada cita con la cita que le pasamos,
-	 * cuando es igual, devuelve i que es el valor del indice del array citas donde
-	 * se encuentra a cita, si no, devuelve el tamaño + 1
-	 */
-	private int buscarIndice(Cita cita) {
-		for (int i = 0; i < tamano; i++) {
-			if (citas[i].equals(cita)) {
-				return i;
-			}
-		}
-		return tamano + 1;
-	}
-
-	/*
 	 * comprueba que no sea nulo o que el tamaño no sea igual que la capacidad
 	 * (porque si es igual ya no se pueden añadir mas citas). Luego, si el tamano es
 	 * > 0 es que mínimo hay una cita, con lo cual con el metodo buscarIndice
 	 * buscamos en que posicion está (lo guardo en citaBuscada), luego si el tamano
 	 * es mayor que dicho indice, significa que esa cita ya existe para esa fecha y
-	 * hora, si no, se guarda una copia de la cita que
-	 * nos han pasado en el array citas y luego se incrementa el tamaño de citas
+	 * hora, si no, se guarda una copia de la cita que nos han pasado en el array
+	 * citas y luego se incrementa el tamaño de citas
 	 */
 	public void insertar(Cita cita) throws OperationNotSupportedException {
 		if (cita == null) {
@@ -84,16 +70,34 @@ public class Citas {
 	}
 
 	/*
+	 * se recorre el array citas y se compara cada cita con la cita que le pasamos,
+	 * cuando es igual, devuelve i que es el valor del indice del array citas donde
+	 * se encuentra a cita, si no, devuelve el tamaño + 1
+	 */
+	private int buscarIndice(Cita cita) {
+		for (int i = 0; i < tamano; i++) {
+			if (citas[i].equals(cita)) {
+				return i;
+			}
+		}
+		return tamano + 1;
+	}
+
+	/*
 	 * metodo que recorre el array citas y si encuentra una igual que la que le
 	 * pasamos, devuelve una copia, si no, devuelve nulo
 	 */
 	public Cita buscar(Cita cita) {
-		for (int i = 0; i < tamano; i++) {
-			if (citas[i].equals(cita)) {
-				return new Cita(cita);
-			}
+		int indice = buscarIndice(cita);
+		if (indice < tamano) {
+			return new Cita(citas[indice]);
 		}
 		return null;
+
+		/*
+		 * for (int i = 0; i < tamano; i++) { if (citas[i].equals(cita)) { return new
+		 * Cita(cita); } } return null;
+		 */
 
 	}
 
@@ -131,7 +135,8 @@ public class Citas {
 	public void borrar(Cita cita) throws OperationNotSupportedException {
 		if (cita == null) {
 			throw new IllegalArgumentException("ERROR: No se puede borrar una cita nula.");
-		}
+		} // con null no pasa los test tmpc
+
 		int resultado = buscarIndice(cita);
 		if (resultado > tamano) {
 			throw new OperationNotSupportedException("ERROR: No existe ninguna cita para esa fecha y hora.");
@@ -140,7 +145,7 @@ public class Citas {
 		tamano--;
 	}
 
-	//Constructor con parámetros
+	// Constructor con parámetros
 	public Citas(int capacidad) {
 		if (capacidad <= 0) {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
@@ -149,7 +154,6 @@ public class Citas {
 		tamano = 0;
 		citas = new Cita[capacidad];
 	}
-
 
 	/*
 	 * creo el objeto citasPorFecha con la misma capacidad del objeto Citas que ya
